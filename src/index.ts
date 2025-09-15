@@ -24,10 +24,13 @@ export interface FormatDateOptions {
 
 // Main function
 export function formatDate(
-  date: Date,
+  dateInput: Date | string,
   locale: Locale = "en",
   options: FormatDateOptions = {}
 ): string {
+  // If string → convert to Date
+  const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
+
   const l = locales[locale];
   const day = date.getDate();
   const month = l.months[date.getMonth()];
