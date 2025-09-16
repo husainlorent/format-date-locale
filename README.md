@@ -21,26 +21,26 @@ yarn add format-date-locale
 
 Usage
 
-import React from "react";
+## 📝 Usage (React)
+
+```tsx
 import { formatDate } from "format-date-locale";
 
 interface DateDisplayProps {
-/** Date object or ISO string from API \*/
-time: string | Date;
-/** Locale code: en, uz, ru, tr, fr, es \*/
-lang: "en" | "uz" | "ru" | "tr" | "fr" | "es";
+  /** Date object or ISO string from API */
+  time: string | Date;
+  /** Locale code: en, uz, ru, tr, fr, es */
+  lang: "en" | "uz" | "ru" | "tr" | "fr" | "es";
 }
 
-const DateDisplay: React.FC<DateDisplayProps> = ({ time, lang }) => {
-return (
-<>
-Formatted date: {formatDate(time, lang)}
-</>
+const DateDisplay: React.FC<DateDisplayProps> = ({ time, lang }) => (
+  <>Formatted date: {formatDate(time, lang)}</>
 );
-};
 
 export default DateDisplay;
 
+
+``` 
 Notes:
 time can be a Date object or ISO string from API
 lang is a type-safe locale code, TypeScript will throw an error for invalid codes
