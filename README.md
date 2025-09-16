@@ -4,22 +4,47 @@ A simple, type-safe, multi-language date formatter for JavaScript and TypeScript
 Format dates in multiple languages with an easy-to-use API. By default, it supports English, Uzbek, Russian, Turkish, French, and Spanish.
 
 Features
- Multi-language support: en, uz, ru, tr, fr, es
- Type-safe: compile-time validation for locales and options
- Optional day-of-week formatting (withDay)
- Easy to extend with new locales
+Multi-language support: en, uz, ru, tr, fr, es
+Type-safe: compile-time validation for locales and options
+Optional day-of-week formatting (withDay)
+Easy to extend with new locales
 
- Installation
- # npm
+Installation
+
+# npm
+
 npm install format-date-locale
 
 # yarn
-yarn add format-date-locale
 
+yarn add format-date-locale
 
 Usage
 
+import React from "react";
 import { formatDate } from "format-date-locale";
+
+interface DateDisplayProps {
+/** Date object or ISO string from API \*/
+time: string | Date;
+/** Locale code: en, uz, ru, tr, fr, es \*/
+lang: "en" | "uz" | "ru" | "tr" | "fr" | "es";
+}
+
+const DateDisplay: React.FC<DateDisplayProps> = ({ time, lang }) => {
+return (
+<>
+Formatted date: {formatDate(time, lang)}
+</>
+);
+};
+
+export default DateDisplay;
+
+Notes:
+time can be a Date object or ISO string from API
+lang is a type-safe locale code, TypeScript will throw an error for invalid codes
+Use in any React component to display localized, formatted dates
 
 // 🔹 Create a Date object
 const today = new Date(2025, 8, 15); // September 15, 2025 (or api)
@@ -39,9 +64,8 @@ console.log(formatDate(today, "uz", { withDay: true }));
 // 🔹 Example: all supported locales with day
 const locales: Array<"en"|"uz"|"ru"|"tr"|"fr"|"es"> = ["en","uz","ru","tr","fr","es"];
 locales.forEach(loc => {
-  console.log(`${loc}:`, formatDate(today, loc, { withDay: true }));
+console.log(`${loc}:`, formatDate(today, loc, { withDay: true }));
 });
-
 
 Supported Locales
 
@@ -55,7 +79,6 @@ Supported Locales
 | Spanish | es   |
 
 Type-safe: only these codes are valid. TypeScript will throw an error for invalid locales.
-
 
 TypeScript Support
 Fully type-safe:
