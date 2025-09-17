@@ -21,26 +21,59 @@ yarn add format-date-locale
 
 Usage
 
-## 📝 Usage (React)
+## Usage (React)
 
 ```tsx
+//Basic usage
+
 import { formatDate } from "format-date-locale";
 
-interface DateDisplayProps {
-  /** Date object or ISO string from API */
-  time: string | Date;
-  /** Locale code: en, uz, ru, tr, fr, es */
-  lang: "en" | "uz" | "ru" | "tr" | "fr" | "es";
+const date = new Date();
+
+export default function Example() {
+  return (
+    <div>
+      <h2>
+        Today’s date: {formatDate(date, "en")}
+      </h2>
+      <p>
+        Uzbek format: {formatDate(date, "uz")}
+      </p>
+    </div>
+  );
 }
 
-const DateDisplay: React.FC<DateDisplayProps> = ({ time, lang }) => (
-  <>Formatted date: {formatDate(time, lang)}</>
-);
 
-export default DateDisplay;
+// With API + i18n
 
+iimport { formatDate } from "format-date-locale";
 
-``` 
+export default function Example() {
+  const date = new Date();
+
+  // Example API response
+  const item = { createdAt: "2025-09-17T10:30:00Z" };
+
+  // lang can come from i18n or browser settings
+  const lang = "en"; // or i18n.language, navigator.language, etc.
+
+  return (
+    <div>
+      {/* Local date */}
+      <h2>
+        Today’s date: {formatDate(date, lang)}
+      </h2>
+
+      {/* Date from API */}
+      <p>
+        Created at: {formatDate(item.createdAt, lang)}
+      </p>
+    </div>
+  );
+}
+
+```
+
 Notes:
 time can be a Date object or ISO string from API
 lang is a type-safe locale code, TypeScript will throw an error for invalid codes
@@ -90,5 +123,5 @@ Tips
 Use withDay: true to include the day of the week
 Extend with more locales using the steps above
 Works in both JavaScript and TypeScript projects
-📝 License
+License:
 MIT License © Khusnitdin

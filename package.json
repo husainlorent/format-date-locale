@@ -1,6 +1,6 @@
 {
   "name": "format-date-locale",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A simple, type-safe, multi-language date formatter for JavaScript and TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
