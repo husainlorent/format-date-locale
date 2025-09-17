@@ -37,7 +37,7 @@ export default function Example() {
         Today’s date: {formatDate(date, "en")}
       </h2>
       <p>
-        Uzbek format: {formatDate(date, "uz")}
+        Today’s date (Uzbek or other): {formatDate(date, "uz")}
       </p>
     </div>
   );
